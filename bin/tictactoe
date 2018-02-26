@@ -1,3 +1,24 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+
+puts "\nWelcome to Tic Tac Toe!\n\n"
+print "How many players are in this game? "
+
+def ask_number_of_players
+  print "Please select 1-2: "
+  number_of_players = gets.chomp
+  if number_of_players == "1"
+    game = Game.new(Players::Human.new("X"), Players::Computer.new("O"))
+  elsif number_of_players == "2"
+    game = Game.new
+  else
+    print "\nThis option is not valid. "
+    ask_number_of_players
+  end
+  game
+end
+
+game = ask_number_of_players
+game.board.display
+game.play
